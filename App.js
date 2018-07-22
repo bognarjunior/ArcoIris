@@ -17,6 +17,16 @@ export default class App extends Component {
     }
   }
 
+  componentDidMount() {
+    const intervalInms = 1000;
+    setInterval(() => {
+      const lastColor = this.state.colors.slice(-1);
+      const listWithoutLast = this.state.colors.slice(0, -1);
+      this.setState({ colors: lastColor.concat(listWithoutLast) })
+    }, intervalInms)
+    
+  }
+
   render() {
     const views = this.state.colors.map(color => (
       <View key={color} style={{ flex:1, backgroundColor: color }}/>
@@ -32,13 +42,5 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  redContainer: {
-    flex: 1,
-    backgroundColor: 'red',
-  },
-  greenContainer: {
-    flex: 1,
-    backgroundColor: 'green',
   },
 });
