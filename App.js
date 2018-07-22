@@ -6,13 +6,13 @@ export default class App extends Component {
     super(props);
     this.state = {
       colors: [
-        '#FF0000', 
-        '#FF7F00', 
-        '#FFFF00', 
-        '#00FF00', 
-        '#0000FF', 
-        '#4B0082', 
-        '#9400D3' 
+        'red', 
+        'orange', 
+        'yellow', 
+        'green', 
+        'blue', 
+        'indigo', 
+        'violet' 
       ],
     }
   }
@@ -24,16 +24,16 @@ export default class App extends Component {
       const listWithoutLast = this.state.colors.slice(0, -1);
       this.setState({ colors: lastColor.concat(listWithoutLast) })
     }, intervalInms)
-    
   }
 
+  createViews = () => ( 
+    this.state.colors.map( color => ( <View key={color} style={[styles.container, styles[`${color}Bg`]]}/> ) )
+  );
+
   render() {
-    const views = this.state.colors.map(color => (
-      <View key={color} style={{ flex:1, backgroundColor: color }}/>
-    ));
     return (
       <View style={styles.container}>
-        {views}
+        {this.createViews()}
       </View>
     );
   }
@@ -42,5 +42,26 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  redBg: {
+    backgroundColor: '#FF0000'
+  },
+  orangeBg: {
+    backgroundColor: '#FF7F00'
+  },
+  yellowBg: {
+    backgroundColor: '#FFFF00'
+  },
+  greenBg: {
+    backgroundColor: '#00FF00'
+  },
+  blueBg: {
+    backgroundColor: '#0000FF'
+  },
+  indigoBg: {
+    backgroundColor: '#4B0082'
+  },
+  violetBg: {
+    backgroundColor: '#9400D3'
   },
 });
