@@ -2,17 +2,23 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      colors: [
+        '#FF0000', 
+        '#FF7F00', 
+        '#FFFF00', 
+        '#00FF00', 
+        '#0000FF', 
+        '#4B0082', 
+        '#9400D3' 
+      ],
+    }
+  }
+
   render() {
-    const colors = [
-      '#FF0000', 
-      '#FF7F00', 
-      '#FFFF00', 
-      '#00FF00', 
-      '#0000FF', 
-      '#4B0082', 
-      '#9400D3' 
-    ];
-    const views = colors.map(color => (
+    const views = this.state.colors.map(color => (
       <View key={color} style={{ flex:1, backgroundColor: color }}/>
     ));
     return (
